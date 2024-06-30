@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Coming Soon CI/CD
 
 on:
   push:
@@ -17,6 +17,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup apache
+      - name: Build and run Docker
         run: |
-          ls
+          docker build . -t keysafe
+          docker run -d -p 80:80 keysafe
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
